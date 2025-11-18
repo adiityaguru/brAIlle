@@ -1,326 +1,144 @@
+/* --- KEEP ALL PREVIOUS CSS, BUT ADD/UPDATE THESE SECTIONS --- */
+
 :root {
-    --bg-dark: #050507; /* Almost black */
-    --bg-navy: #0e1621; /* Dark Navy */
-    --accent-blue: #2a4d69; /* Muted Royal Blue */
+    --bg-dark: #050507;
+    --bg-navy: #0e1621;
+    --accent-blue: #2a4d69;
+    --highlight: #4a90e2;
     --text-main: #e0e0e0;
     --text-dim: #8b9bb4;
-    --card-bg: rgba(20, 30, 46, 0.6);
+    --card-bg: rgba(20, 30, 46, 0.8); /* Slightly more opaque for readability */
     --card-border: rgba(255, 255, 255, 0.08);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    overflow-x: hidden;
-}
-
-/* --- 3D Background Canvas --- */
-#bg-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    /* Gentle gradient overlay on top of the canvas */
-    background: radial-gradient(circle at 50% 50%, rgba(14, 22, 33, 0.2) 0%, rgba(5, 5, 7, 1) 100%);
-}
-
-/* --- Navigation --- */
+/* Ensure nav stays on top */
 nav {
+    z-index: 1000;
+}
+
+/* --- ABOUT PAGE STYLES --- */
+.profile-grid {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(10px);
-    background: rgba(5, 5, 7, 0.7);
-    border-bottom: 1px solid var(--card-border);
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
-.logo span { color: #4a90e2; }
-
-.nav-links a {
-    color: var(--text-main);
-    text-decoration: none;
-    margin-left: 30px;
-    font-size: 0.9rem;
-    font-weight: 400;
-    transition: 0.3s;
-}
-
-.nav-links a:hover { color: #4a90e2; }
-
-.cta-btn {
-    border: 1px solid var(--text-main);
-    padding: 8px 20px;
-    border-radius: 20px;
-}
-
-.cta-btn:hover {
-    background: var(--text-main);
-    color: var(--bg-dark) !important;
-}
-
-/* --- Hero Section --- */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
+    gap: 40px;
     justify-content: center;
-    text-align: center;
-    padding: 0 20px;
-}
-
-.hero-content {
-    max-width: 800px;
-}
-
-.overline {
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #4a90e2;
-    font-size: 0.8rem;
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-size: 4rem;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    background: linear-gradient(to right, #fff, #8b9bb4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    color: var(--text-dim);
-    margin-bottom: 40px;
-    line-height: 1.6;
-}
-
-.hero-btns {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.btn-primary, .btn-secondary {
-    padding: 12px 30px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.btn-primary {
-    background: #4a90e2;
-    color: white;
-}
-.btn-primary:hover { background: #357abd; }
-
-.btn-secondary {
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-}
-.btn-secondary:hover { border-color: white; }
-
-/* --- Sections General --- */
-.content-section {
-    padding: 100px 50px;
-    border-top: 1px solid var(--card-border);
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
-.section-header p { color: var(--text-dim); }
-
-/* --- Mission Split --- */
-.split-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-}
-
-.text-block h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-.text-block p {
-    color: var(--text-dim);
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.stat-block {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-.stat-card {
-    background: var(--card-bg);
-    padding: 30px;
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    text-align: center;
-    flex: 1;
-}
-.stat-card.highlight { border-color: #4a90e2; }
-.stat-arrow { font-size: 1.2rem; color: var(--text-dim); }
-
-/* --- Features (Tara) --- */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.feature-card {
-    background: var(--card-bg);
-    padding: 40px;
-    border-radius: 8px;
-    border: 1px solid var(--card-border);
-    transition: transform 0.3s;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    background: rgba(20, 30, 46, 0.8);
-}
-
-.feature-card .icon { font-size: 2rem; margin-bottom: 20px; }
-.feature-card h3 { margin-bottom: 10px; }
-.feature-card p { color: var(--text-dim); line-height: 1.5; }
-
-/* --- Pipeline Viz --- */
-.pipeline-viz {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
     margin-top: 40px;
 }
 
-.step {
+.profile-card {
     background: var(--card-bg);
-    padding: 20px;
-    border-radius: 8px;
-    width: 200px;
-    text-align: center;
     border: 1px solid var(--card-border);
-    position: relative;
-}
-
-.step-num {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #4a90e2;
-    color: white;
-    font-size: 0.8rem;
-    padding: 2px 8px;
-    border-radius: 4px;
-}
-
-.connector {
-    height: 1px;
-    flex-grow: 1;
-    background: var(--card-border);
-    margin: 0 10px;
-}
-
-/* --- Dev Log --- */
-.log-container {
-    border-left: 2px solid var(--card-border);
-    margin-top: 40px;
-    margin-left: 20px;
-}
-
-.log-item {
-    display: flex;
-    margin-bottom: 40px;
-    position: relative;
-    padding-left: 40px;
-}
-
-.log-item::before {
-    content: '';
-    position: absolute;
-    left: -6px;
-    top: 5px;
-    width: 10px;
-    height: 10px;
-    background: #4a90e2;
-    border-radius: 50%;
-}
-
-.log-date {
-    width: 100px;
-    font-weight: 600;
-    color: #4a90e2;
-    font-size: 0.9rem;
-}
-
-.log-content h3 { margin-bottom: 5px; font-size: 1.1rem; }
-.log-content p { color: var(--text-dim); font-size: 0.95rem; }
-
-/* --- Footer --- */
-footer {
-    background: black;
-    padding: 80px 50px 20px;
-    border-top: 1px solid var(--card-border);
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-}
-
-.highlight-text { color: #4a90e2; }
-.email-link { color: white; text-decoration: underline; margin-top: 10px; display: block; }
-
-.copyright {
+    padding: 40px;
+    border-radius: 12px;
+    width: 350px;
     text-align: center;
-    color: var(--text-dim);
-    font-size: 0.8rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 20px;
+    transition: transform 0.3s;
 }
 
-/* --- Responsiveness --- */
-@media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    .split-layout { grid-template-columns: 1fr; }
-    .pipeline-viz { flex-direction: column; gap: 20px; }
-    .connector { width: 1px; height: 30px; }
-    .footer-content { flex-direction: column; gap: 40px; }
-    .nav-links { display: none; } /* Simple hide for mobile for now */
+.profile-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--highlight);
+}
+
+.profile-role {
+    color: var(--highlight);
+    font-weight: 600;
+    margin: 10px 0;
+    display: block;
+}
+
+.linkedin-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 20px;
+    border: 1px solid var(--highlight);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.linkedin-btn:hover {
+    background: var(--highlight);
+    color: black;
+}
+
+/* --- CONTACT PAGE STYLES --- */
+.contact-wrapper {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.contact-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 60px;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.email-large {
+    font-size: 1.5rem;
+    color: var(--highlight);
+    text-decoration: none;
+    margin: 30px 0;
+    display: block;
+    font-weight: bold;
+}
+
+.social-links {
+    margin-top: 30px;
+    border-top: 1px solid var(--card-border);
+    padding-top: 30px;
+}
+
+/* --- BLOG PAGE STYLES --- */
+.blog-header {
+    padding-top: 150px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.blog-grid {
+    display: grid;
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.blog-post {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-meta {
+    color: var(--highlight);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.blog-post h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.blog-post p {
+    line-height: 1.7;
+    color: var(--text-dim);
+}
+
+/* Common utilities */
+.page-padding {
+    padding-top: 120px; /* Spacing for fixed nav */
 }
