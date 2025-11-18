@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Log | brAIlle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <div class="logo">br<span>AI</span>lle</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="blog.html">Dev Log</a>
+            <a href="contact.html" class="cta-btn">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container blog-header fade-in">
+        <h1>Development Log</h1>
+        <p>Tracking our journey from prototype to production.</p>
+    </div>
+
+    <div class="container blog-grid">
+        
+        <!-- LATEST POST STARTS HERE -->
+        <article class="blog-post fade-in">
+            <div class="blog-meta">Current Update • Software</div>
+            <h3>Vision-Language Model Optimization</h3>
+            <p>We are currently optimizing OCRNet to better handle complex PDF table recognition. The challenge lies in running these heavy models on the Jetson Orin Nano's embedded hardware while maintaining real-time latency. Early tests show a 20% speed improvement.</p>
+        </article>
+
+        <!-- OLDER POST -->
+        <article class="blog-post fade-in">
+            <div class="blog-meta">November 2023 • Hardware</div>
+            <h3>Prototype Housing Design</h3>
+            <p>We have finalized the CAD designs for the 20-cell refreshable display unit. We are utilizing 3D printing for the initial casing to test ergonomics and heat dissipation from the Orin Nano.</p>
+        </article>
+
+        <!-- OLDER POST -->
+        <article class="blog-post fade-in">
+            <div class="blog-meta">October 2023 • Integration</div>
+            <h3>Speech Pipeline Success</h3>
+            <p>Successfully tested NVIDIA Riva integration. We can now convert spoken audio to text, process it through our Python logic module, and output Braille signals with minimal latency.</p>
+        </article>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
