@@ -3,36 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>brAIlle | Introducing Tara</title>
+    <title>brAIlle | Intelligent Tactile Systems</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- Three.js & GSAP CDNs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-
-    <!-- The 3D Canvas Background -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Navigation -->
     <nav>
         <div class="logo">br<span>AI</span>lle</div>
         <div class="nav-links">
-            <a href="#mission">Mission</a>
-            <a href="#tara">Meet Tara</a>
-            <a href="#tech">Technology</a>
-            <a href="#updates">Dev Log</a>
-            <a href="#contact" class="cta-btn">Contact</a>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="blog.html">Dev Log</a>
+            <a href="contact.html" class="cta-btn">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <header class="hero">
         <div class="hero-content">
             <p class="overline">Intelligent Tactile Systems</p>
@@ -40,26 +31,20 @@
             <p class="subtitle">Introducing <strong>Tara</strong>. The standalone device transforming speech and complex PDFs into real-time Braille.</p>
             <div class="hero-btns">
                 <a href="#tara" class="btn-primary">Discover Tara</a>
-                <a href="#updates" class="btn-secondary">View Progress</a>
+                <a href="blog.html" class="btn-secondary">View Progress</a>
             </div>
         </div>
     </header>
 
-    <!-- The Gap / Mission -->
+    <!-- Mission Section -->
     <section id="mission" class="content-section">
         <div class="container">
             <div class="split-layout">
                 <div class="text-block fade-in">
                     <h2>The Accessibility Paradox</h2>
-                    <p>Over <strong>285 million people</strong> live with visual impairment. While audiobooks help, they are passive. Only Braille empowers true literacy—reading, writing, and punctuation.</p>
-                    <p>Current devices are either too expensive, too complex, or cannot handle modern digital formats. We are closing this gap.</p>
+                    <p>Over <strong>285 million people</strong> live with visual impairment. While audiobooks help, only Braille empowers true literacy.</p>
                 </div>
                 <div class="stat-block fade-in">
-                    <div class="stat-card">
-                        <h3>Passive</h3>
-                        <p>Audio & Screen Readers</p>
-                    </div>
-                    <div class="stat-arrow">vs</div>
                     <div class="stat-card highlight">
                         <h3>Empowered</h3>
                         <p>Tara Intelligent Braille</p>
@@ -69,118 +54,44 @@
         </div>
     </section>
 
-    <!-- The Solution: Tara -->
+    <!-- Tara Features -->
     <section id="tara" class="content-section dark-bg">
         <div class="container">
             <div class="section-header fade-in">
                 <h2>Meet Tara</h2>
                 <p>A fully standalone, multimodal Braille computer.</p>
             </div>
-            
             <div class="features-grid">
                 <div class="feature-card fade-in">
                     <div class="icon">🎙️</div>
                     <h3>Speech-to-Braille</h3>
-                    <p>Real-time conversion of spoken language into tactile output using NVIDIA Riva.</p>
+                    <p>Real-time conversion using NVIDIA Riva.</p>
                 </div>
                 <div class="feature-card fade-in">
                     <div class="icon">📄</div>
                     <h3>PDF Understanding</h3>
-                    <p>Intelligent parsing of complex layouts using Vision-Language Models.</p>
+                    <p>Intelligent parsing using Vision-Language Models.</p>
                 </div>
                 <div class="feature-card fade-in">
                     <div class="icon">🧠</div>
                     <h3>Embedded AI</h3>
-                    <p>Powered by Jetson Orin Nano. No cloud dependency required for core features.</p>
+                    <p>Powered by Jetson Orin Nano.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- The Technology (Pipeline) -->
-    <section id="tech" class="content-section">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>The Pipeline</h2>
-                <p>From NVIDIA NeMo to Mechanical Actuation.</p>
-            </div>
-            <div class="pipeline-viz fade-in">
-                <div class="step">
-                    <span class="step-num">01</span>
-                    <h4>Input</h4>
-                    <p>Audio / PDF</p>
-                </div>
-                <div class="connector"></div>
-                <div class="step">
-                    <span class="step-num">02</span>
-                    <h4>AI Core</h4>
-                    <p>Canary-Qwen 2.5B <br>+ OCRNet</p>
-                </div>
-                <div class="connector"></div>
-                <div class="step">
-                    <span class="step-num">03</span>
-                    <h4>Translation</h4>
-                    <p>Python Logic <br>Module</p>
-                </div>
-                <div class="connector"></div>
-                <div class="step">
-                    <span class="step-num">04</span>
-                    <h4>Tactile Output</h4>
-                    <p>Refreshable Display</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Development Log (For Investors) -->
-    <section id="updates" class="content-section">
-        <div class="container">
-            <h2>Development Log</h2>
-            <div class="log-container">
-                <!-- Log Item 1 -->
-                <div class="log-item fade-in">
-                    <div class="log-date">Oct 2023</div>
-                    <div class="log-content">
-                        <h3>Speech Pipeline Integrated</h3>
-                        <p>Successfully tested NVIDIA Riva integration on the Jetson Orin Nano. Latency reduced by 40%.</p>
-                    </div>
-                </div>
-                <!-- Log Item 2 -->
-                <div class="log-item fade-in">
-                    <div class="log-date">Nov 2023</div>
-                    <div class="log-content">
-                        <h3>Prototype Housing Design</h3>
-                        <p>Finalized CAD designs for the 20-cell refreshable display unit. 3D printing initial casing.</p>
-                    </div>
-                </div>
-                <!-- Log Item 3 -->
-                <div class="log-item fade-in">
-                    <div class="log-date">Current</div>
-                    <div class="log-content">
-                        <h3>Vision-Language Model Optimization</h3>
-                        <p>Currently optimizing OCRNet for complex PDF table recognition.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact / Footer -->
-    <footer id="contact">
+    <!-- Footer -->
+    <footer>
         <div class="container footer-content">
             <div class="footer-left">
                 <h2>br<span class="highlight-text">AI</span>lle</h2>
-                <p>Developing the future of accessible literacy.</p>
             </div>
             <div class="footer-right">
-                <h3>Contact Us</h3>
-                <p>Aditya Guru & Riya Patil</p>
-                <a href="mailto:contact@braille-startup.com" class="email-link">Get in Touch</a>
+                <a href="contact.html" class="email-link">Contact Us</a>
             </div>
         </div>
-        <div class="copyright">
-            &copy; 2023 brAIlle Project. All Rights Reserved.
-        </div>
+        <div class="copyright">&copy; 2023 brAIlle Technologies.</div>
     </footer>
 
     <script src="script.js"></script>
