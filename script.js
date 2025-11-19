@@ -2,9 +2,9 @@
 const canvas = document.getElementById('bg-canvas');
 const scene = new THREE.Scene();
 
-// Camera setup - STATIC (No rotation)
+// Camera setup - STATIC
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 0, 35); // Look straight on
+camera.position.set(0, 0, 35);
 camera.lookAt(0, 0, 0);
 
 // Renderer setup
@@ -12,18 +12,23 @@ const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialia
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 
-// --- THE BRAILLE GRID ---
-const geometry = new THREE.SphereGeometry(0.25, 16, 16); 
+// --- THE BRAILLE GRID (UPDATED SETTINGS) ---
+// Increased size significantly (0.25 -> 0.8)
+const geometry = new THREE.SphereGeometry(0.8, 32, 32); 
+
+// Changed color to dark slate grey (#1a202c) - subtle against the black background
 const material = new THREE.MeshStandardMaterial({ 
-    color: 0x2a4d69, // Royal Navy Blue
-    roughness: 0.8, 
+    color: 0x1a202c, 
+    roughness: 0.9, // Very matte
     metalness: 0.1
 });
 
 const particles = [];
-const rows = 40; 
-const cols = 70;
-const spacing = 1.8;
+
+// Decreased density (Fewer dots, more space)
+const rows = 14;  
+const cols = 24;
+const spacing = 4.5; // Increased spacing
 
 // Create grid
 for (let x = 0; x < cols; x++) {
@@ -39,7 +44,7 @@ for (let x = 0; x < cols; x++) {
         mesh.userData = {
             x: mesh.position.x,
             y: mesh.position.y,
-            phase: Math.random() * Math.PI * 2 // Random phase for organic ripple
+            phase: Math.random() * Math.PI * 2 
         };
 
         scene.add(mesh);
@@ -47,11 +52,12 @@ for (let x = 0; x < cols; x++) {
     }
 }
 
-// --- LIGHTING ---
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+// --- LIGHTING (DIMMED FOR SUBTLETY) ---
+// Reduced intensity so they don't shine too bright
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.1); 
 scene.add(ambientLight);
 
-const dirLight = new THREE.DirectionalLight(0x4a90e2, 0.8);
+const dirLight = new THREE.DirectionalLight(0x4a90e2, 0.5); // Low intensity blue tint
 dirLight.position.set(10, 10, 20);
 scene.add(dirLight);
 
@@ -67,13 +73,12 @@ let mouseX = -1000;
 let mouseY = -1000;
 
 document.addEventListener('mousemove', (event) => {
-    // Convert mouse to 3D coordinates roughly
     mouseX = (event.clientX / window.innerWidth) * 2 - 1;
     mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
     
-    // Scale to match grid size
-    mouseX *= 50; 
-    mouseY *= 30;
+    // Scale input to match the wider grid
+    mouseX *= 60; 
+    mouseY *= 35;
 });
 
 // --- ANIMATION LOOP ---
@@ -84,17 +89,17 @@ function animate() {
     const time = clock.getElapsedTime();
 
     particles.forEach((p) => {
-        // 1. BACKGROUND WAVE
-        // A gentle, slow ripple across the whole wall
-        const waveZ = Math.sin(p.userData.x * 0.2 + time * 1.0) * Math.cos(p.userData.y * 0.2 + time * 0.8) * 0.5;
+        // 1. BACKGROUND WAVE (Slower, more elegant)
+        const waveZ = Math.sin(p.userData.x * 0.15 + time * 0.8) * Math.cos(p.userData.y * 0.15 + time * 0.6) * 0.8;
 
         // 2. MOUSE REACTION (Tactile Pop)
+        // Distance check needs to be larger because dots are further apart
         const dist = Math.sqrt(Math.pow(p.userData.x - mouseX, 2) + Math.pow(p.userData.y - mouseY, 2));
         let hoverZ = 0;
         
-        if (dist < 6) {
-            // When mouse is close, dots raise up (Braille pin effect)
-            hoverZ = (6 - dist) * 0.8;
+        if (dist < 8) {
+            // Smooth rise
+            hoverZ = (8 - dist) * 0.6;
         }
 
         p.position.z = waveZ + hoverZ;
